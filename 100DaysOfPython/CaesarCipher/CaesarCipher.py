@@ -3,27 +3,28 @@ print(logo)
 
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
-
-def code(method, plain_text, shift_amount):
+def caesar(method, plain_text, shift_amount):
+    if method == "decode":
+        shift_amount = -shift_amount
     Text = ''
     for letter in plain_text:
-        position = alphabet.index(letter)
-        if method == "encode":
+        if letter in alphabet:
+            position = alphabet.index(letter)
             newPosition = (position + shift_amount) % 26
             newLetter = alphabet[newPosition]
-        elif method == "decode":
-            newPosition = (position - shift_amount) % 26
-            newLetter = alphabet[newPosition]
+            Text += newLetter
         else:
-            print("Error! You typed something else.")
-        Text += newLetter
+            Text += letter
     print(f"The {method}d text is {Text}")
 
-code(method=direction, plain_text=text, shift_amount=shift)
-
+while True:
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
+    caesar(method=direction, plain_text=text, shift_amount=shift)
+    anotherInput = input("Would you like to restart the cipher program, type 'yes' to restart and 'no' to discontinue.\n").lower()
+    if anotherInput != 'yes':
+        break
 
 
 #TODO-1: Create a function called 'encrypt' that takes the 'text' and 'shift' as inputs.

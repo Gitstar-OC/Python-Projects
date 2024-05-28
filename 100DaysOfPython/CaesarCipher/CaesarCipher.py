@@ -24,6 +24,7 @@ while True:
     caesar(method=direction, plain_text=text, shift_amount=shift)
     anotherInput = input("Would you like to restart the cipher program, type 'yes' to restart and 'no' to discontinue.\n").lower()
     if anotherInput != 'yes':
+        print("Goodbye,come to play again")
         break
 
 
